@@ -1,23 +1,22 @@
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-confirmDialog header="Confirmação" icon="pi pi-question-circle" acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
 <div class="container">
-  <div class="ui-g">
-
-    <div class="ui-g-12" style="text-align:left">
-      <h2>Categoria</h2>
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <div class="ui-g">
+      <div class="ui-g-12" style="text-align:left">
+        <h2>Categoria</h2>
+      </div>
+      <div class="ui-g-10 ui-fluid">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" size="30" name="descricao" [(ngModel)]="nomeBusca" pInputText>
+          <label for="float-input">Descrição</label>
+        </span>
+      </div>
+      <div class="ui-g-2 ui-fluid">
+          <button pButton icon="pi pi-search" type="submit" label="pesquisar"></button>
+      </div>
     </div>
-
-    <div class="ui-g-10 ui-fluid">
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText>
-        <label for="float-input">Descrição</label>
-      </span>
-    </div>
-    <div class="ui-g-2 ui-fluid">
-        <button pButton icon="pi pi-search" type="submit" label="pesquisar"></button>
-    </div>
-
-
-
+  </form>
     <div class="ui-g">
       <div class="ui-g-12">
         <p-table [value]="categorias" [paginator]=true [rows]="5" [responsive]="true">
@@ -36,17 +35,15 @@
                 <button pButton icon="pi pi-pencil" tooltipPosition="left" class="ui-button-info" pTooltip="Editar" showDelay="1000" type="button"></button>
               </td>
               <td class="col-acoes">
-                <button pButton icon="pi pi-trash" tooltipPosition="right" class="ui-button-danger" pTooltip="Excluir" showDelay="1000" type="button" (click)="excluir(cat)"></button>
+                <button pButton icon="pi pi-trash" tooltipPosition="right" class="ui-button-danger" pTooltip="Excluir" showDelay="1000" type="button" (click)="confirmarExclusao(cat)"></button>
               </td>
             </tr>
           </ng-template>
         </p-table>
       </div>
     </div>
-
     <div class="ui-g-12">
         <a pButton href="#" icon="pi pi-file" label="Nova Categoria"></a>
     </div>
 
-  </div>
 </div>

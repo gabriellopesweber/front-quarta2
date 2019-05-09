@@ -11,10 +11,14 @@ import { CategoriasService } from './categorias.service';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {MessageService} from "primeng/api"
 import {ToastModule} from 'primeng/toast';
+import { FormsModule } from '@angular/forms';
+import {ConfirmDialogModule} from 'primeng/ConfirmDialog';
+import { CategoriasCadastroComponent } from './categorias-cadastro/categorias-cadastro.component';
+
 
 
 @NgModule({
-  declarations: [CategoriasPesquisaComponent],
+  declarations: [CategoriasPesquisaComponent, CategoriasCadastroComponent],
   imports: [
     CommonModule,
     InputTextModule,
@@ -23,10 +27,13 @@ import {ToastModule} from 'primeng/toast';
     TooltipModule,
     HttpClientModule,
     SplitButtonModule,
-    ToastModule
+    ToastModule,
+    FormsModule,
+    ConfirmDialogModule
   ],
   exports:[
-    CategoriasPesquisaComponent
+    CategoriasPesquisaComponent,
+    CategoriasCadastroComponent
   ],
   providers:[
     CategoriasService,
