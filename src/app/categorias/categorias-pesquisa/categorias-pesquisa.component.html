@@ -32,7 +32,7 @@
               <td class="col-id">{{cat.id}}</td>
               <td>{{cat.nome}}</td>
               <td class="col-acoes">
-                <button pButton icon="pi pi-pencil" tooltipPosition="left" class="ui-button-info" pTooltip="Editar" showDelay="1000" type="button"></button>
+                <button pButton icon="pi pi-pencil" tooltipPosition="left" class="ui-button-info" pTooltip="Editar" showDelay="1000" type="button" [routerLink]="['/categorias', cat.id]"></button>
               </td>
               <td class="col-acoes">
                 <button pButton icon="pi pi-trash" tooltipPosition="right" class="ui-button-danger" pTooltip="Excluir" showDelay="1000" type="button" (click)="confirmarExclusao(cat)"></button>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="ui-g-12">
-        <a pButton href="#" icon="pi pi-file" label="Nova Categoria"></a>
+        <a pButton routerLink="/categorias/novo" icon="pi pi-file" label="Nova Categoria"></a>
     </div>
 
 </div>
