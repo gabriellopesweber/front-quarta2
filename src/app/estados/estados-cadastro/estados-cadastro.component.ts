@@ -1,7 +1,7 @@
+import { EstadosService } from './../estados.service';
 import { Estado } from './../model';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoriasService } from './../../categorias/categorias.service';
 import { MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +15,7 @@ export class EstadosCadastroComponent implements OnInit {
   estados = new Estado();
 
   constructor(
-    private service: CategoriasService,
+    private service: EstadosService,
     private messageService: MessageService,
     private rota: ActivatedRoute,
     private router: Router
