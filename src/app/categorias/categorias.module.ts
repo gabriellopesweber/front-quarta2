@@ -25,17 +25,18 @@ import { CategoriasCadastroComponent } from './categorias-cadastro/categorias-ca
     ButtonModule,
     TableModule,
     TooltipModule,
-    HttpClientModule,
-    SplitButtonModule,
+    TableModule,
     ToastModule,
     FormsModule,
+    SplitButtonModule,
+    HttpClientModule,
     ConfirmDialogModule
   ],
   exports:[
     CategoriasPesquisaComponent,
     CategoriasCadastroComponent
   ],
-  providers:[
+  providers: [
     CategoriasService,
     MessageService
   ]

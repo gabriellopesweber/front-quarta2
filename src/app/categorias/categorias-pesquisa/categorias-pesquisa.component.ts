@@ -1,6 +1,6 @@
-import { MessageService, ConfirmationService } from 'primeng/api';
-import { CategoriasService } from './../categorias.service';
 import { Component, OnInit } from '@angular/core';
+import { CategoriasService } from '../categorias.service';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-categorias-pesquisa',
@@ -16,17 +16,8 @@ export class CategoriasPesquisaComponent implements OnInit {
   constructor(
     private service:CategoriasService,
     private msg:MessageService,
-    private confirmation:ConfirmationService
-    ) { }
-
-  confirmarExclusao(categoria:any){
-    this.confirmation.confirm({
-      message: 'Tem certeza que deseja excluir '+categoria.nome+'?',
-      accept: () => {
-        this.excluir(categoria);
-      }
-    });
-  }
+    private conf: ConfirmationService
+  ) { }
 
   pesquisar(){
     this.service.pesquisar({nome:this.nomeBusca})
@@ -35,16 +26,25 @@ export class CategoriasPesquisaComponent implements OnInit {
     });
   }
 
-  excluir(categoria: any){
-    this.service.excluir(categoria.id)
-    .then(() => {
-      this.pesquisar();
-      this.msg.add({severity:'success', summary:'Success', detail:'Categoria '+categoria.nome+' deletada'});
+  ngOnInit() {
+    this.pesquisar();
+  }
+
+  confirmarExclusao(categoria:any){
+    this.conf.confirm({
+      message: 'Tem certeza que deseja excluir '+categoria.nome+'?',
+      accept: () => {
+        this.excluir(categoria);
+      }
     });
   }
 
-  ngOnInit() {
-    this.pesquisar();
+  excluir(categoria: any){
+    this.service.excluir(categoria.id)
+    .then(()=>{
+      this.pesquisar();
+      this.msg.add({severity:'success', summary:'Exclusão', detail:'Categoria '+categoria.nome+' excluída'});
+    });
   }
 
 }

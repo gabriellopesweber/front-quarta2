@@ -8,18 +8,19 @@ import { HttpClient } from '@angular/common/http';
 export class CategoriasService {
 
   categoriasURL = 'http://localhost:8080/categorias';
-
-  urlFiltro
+  urlFiltro;
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(filtro: any):Promise<any>{
 
+
+  pesquisar(filtro: any): Promise<any> {
     if(filtro.nome){
       this.urlFiltro = 'http://localhost:8080/categorias/filtro?nome='+filtro.nome;
-    } else {
+    }else{
       this.urlFiltro = 'http://localhost:8080/categorias';
     }
+
     return this.http.get<any>(this.urlFiltro).toPromise();
   }
 
@@ -42,4 +43,8 @@ export class CategoriasService {
   buscarPorCodigo(codigo: number): Promise<Categoria> {
     return this.http.get<Categoria>(this.categoriasURL+'/'+codigo).toPromise();
   }
+
+
+
+
 }

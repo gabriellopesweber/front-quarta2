@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriasService } from '../categorias.service';
 import { MessageService } from 'primeng/api';
 import { FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-categorias-cadastro',
@@ -18,8 +19,8 @@ export class CategoriasCadastroComponent implements OnInit {
     private service: CategoriasService,
     private messageService: MessageService,
     private rota: ActivatedRoute,
-    private router: Router
-  ) {}
+    //private rotaP: Router
+  ) { }
 
   inserir(form: FormControl) {
     this.service.adicionar(this.categoria)
@@ -29,9 +30,16 @@ export class CategoriasCadastroComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    const codigoCategoria = this.rota.snapshot.params['id'];
+    if(codigoCategoria){
+      this.carregarCategoria(codigoCategoria);
+    }
+  }
+
   carregarCategoria(id:number){
     this.service.buscarPorCodigo(id)
-      .then((data) => { //ErrowFunction
+      .then((data) => {
         this.categoria = data;
       }
     );
@@ -48,21 +56,16 @@ export class CategoriasCadastroComponent implements OnInit {
   salvar(form: FormControl) {
     if(this.editando){
       this.alterar(form);
-      this.router.navigate(['categorias']);
     }else{
       this.inserir(form);
     }
+    //this.rotaP.navigate(['/categorias']);
   }
 
   get editando(){
     return Boolean(this.categoria.id);
   }
 
-  ngOnInit() {
-    const codigoCategoria = this.rota.snapshot.params['id'];
-    if(codigoCategoria){
-      this.carregarCategoria(codigoCategoria);
-    }
-  }
+
 
 }
