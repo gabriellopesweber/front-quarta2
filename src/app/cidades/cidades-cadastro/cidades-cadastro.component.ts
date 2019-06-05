@@ -1,4 +1,5 @@
-import { FormControl } from '@angular/forms';
+import { element, by } from 'protractor';
+import { FormControl, NgSelectOption } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CidadesService } from './../cidades.service';
 import { Cidade } from './../model';
@@ -34,6 +35,7 @@ export class CidadesCadastroComponent implements OnInit {
       .then((data) => {
         this.cidade = data;
       }
+
     );
   }
 
@@ -68,8 +70,10 @@ export class CidadesCadastroComponent implements OnInit {
   pesquisarEstados(){
     this.service.listarUf()
     .then((dados)=>{
+
       this.estados=dados
       .map(e => ({ label: e.nome, value: e.id }));
+
     });
   }
 

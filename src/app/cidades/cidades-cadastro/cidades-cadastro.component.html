@@ -10,18 +10,14 @@
             </div>
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
-                <label>Nome</label>
-                <input pInputText type="text" name="nome" [(ngModel)]="cidade.nome" #nome="ngModel" required minlength="3">
-                <div *ngIf="nome.hasError('required') && nome.touched">Informe um nome</div>
-                <div *ngIf="nome.hasError('minlength')">O nome deve ter no mínimo 3 caractares</div>
+              <label>Nome</label>
+              <input pInputText type="text" name="nome" [(ngModel)]="cidade.nome" #nome="ngModel" required minlength="3">
+              <div *ngIf="nome.hasError('required') && nome.touched">Informe um nome</div>
+              <div *ngIf="nome.hasError('minlength')">O nome deve ter no mínimo 3 caractares</div>
             </div>
             <div class="ui-g-12 ui-md-9 ui-fluid">
-                <label>UF</label>
-              <p-dropdown [options]="estados"
-                [(ngModel)]="cidade.uf.id"
-                name="uf" [filter]="true">
-              </p-dropdown>
-
+              <label>UF</label>
+              <p-dropdown id="estado" [options]="estados" [(ngModel)]="cidade.estado.id" name="uf" [filter]="true" placeholder="Selecione um estado"></p-dropdown>
             </div>
 
             <div class="ui-g-12">

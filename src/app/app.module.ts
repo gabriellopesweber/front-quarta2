@@ -1,4 +1,6 @@
+import { ProdutosCadastroComponent } from './produtos/produtos-cadastro/produtos-cadastro.component';
 import { EstadosModule } from './estados/estados.module';
+import { ProdutosModule } from './produtos/produtos.module';
 import { EstadosCadastroComponent } from './estados/estados-cadastro/estados-cadastro.component';
 import { EstadosPesquisaComponent } from './estados/estados-pesquisa/estados-pesquisa.component';
 import { CidadesModule } from './cidades/cidades.module';
@@ -18,6 +20,8 @@ import {SidebarModule} from 'primeng/sidebar';
 
 import {Routes, RouterModule} from '@angular/router';
 
+
+
 const rotas: Routes = [
   {path: '', redirectTo:'categorias', pathMatch:'full'},
   {path: 'cidades', component: CidadesCadastroComponent},
@@ -27,26 +31,29 @@ const rotas: Routes = [
   {path: 'estados', component: EstadosPesquisaComponent},
   {path: 'estados/novo', component: EstadosCadastroComponent},
   {path: 'estados/:id', component: EstadosCadastroComponent},
+  {path: 'produtos', component: ProdutosCadastroComponent},
+  {path: 'produtos/novo', component: ProdutosCadastroComponent},
+  {path: 'produtos/:id', component: ProdutosCadastroComponent},
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CategoriasModule,
-    CidadesModule,
     HttpClientModule,
+    RouterModule.forRoot(rotas),
     EstadosModule,
     SidebarModule,
     ButtonModule,
-    RouterModule.forRoot(rotas)
+    CidadesModule,
+    ProdutosModule
   ],
-  providers: [
-    ConfirmationService
-  ],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

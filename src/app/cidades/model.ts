@@ -6,5 +6,5 @@ export class Estado{
 export class Cidade{
   id: number;
   nome: string;
-  uf= new Estado();
+  estado = new Estado();
 }
